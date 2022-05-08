@@ -1,8 +1,8 @@
 package raylog
 
-func Output(level Level, code string, err error) {
+func Output(level uint8, code string, err error) {
 
-	switch level {
+	switch Level(level) {
 	case InfoLevel:
 		Info(code).Err(err)
 	case WarnLevel:
