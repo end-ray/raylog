@@ -82,6 +82,23 @@ func (e *Event) Err(err error) {
 
 }
 
+func (e *Event) Msg(message string) {
+	e.msg = message
+
+	//fmt.Printf("%T\n", e.t)
+	//fmt.Println(e.level.String(), e.t.Format("02-01-2006 15:04:05\n"), e.code, e.msg)
+
+	log := fmt.Sprintf("%s %s %s: %s\n", e.level.String(), e.t.Format("02-01-2006 15:04:05\n"), e.code, e.msg)
+
+	writeLog(log)
+
+	if e.level == PanicLevel {
+		panic(log)
+	}
+	fmt.Println(log)
+
+}
+
 func GetConfig(path string) {
 	config.Home = path //назначаем переменной значение
 }

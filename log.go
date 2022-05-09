@@ -1,5 +1,12 @@
 package raylog
 
+func checkMsg(level uint8, code string, message string) {
+	switch Level(level) {
+	case InfoLevel:
+		Info(code).Msg(message)
+	}
+}
+
 func Output(level uint8, code string, err error) {
 
 	switch Level(level) {
