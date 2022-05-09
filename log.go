@@ -7,6 +7,15 @@ func CheckMsg(level uint8, code string, message string) {
 	}
 }
 
+func CheckErr(level uint8, code string, err error) {
+	switch Level(level) {
+	case WarnLevel:
+		Warn(code).Err(err)
+	case PanicLevel:
+		Panic(code).Err(err)
+	}
+}
+
 func Output(level uint8, code string, err error) {
 
 	switch Level(level) {
