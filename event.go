@@ -36,7 +36,7 @@ func (l Level) String() string {
 	case TraceLevel:
 		return "trace"
 	case DebugLevel:
-		return "debug"
+		return "DEBUG"
 	case InfoLevel:
 		return "INFO"
 	case WarnLevel:

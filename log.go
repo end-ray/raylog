@@ -9,6 +9,8 @@ func CheckMsg(level uint8, code string, message string) {
 
 func CheckErr(level uint8, code string, err error) {
 	switch Level(level) {
+	case DebugLevel:
+		Debug(code).Err(err)
 	case WarnLevel:
 		Warn(code).Err(err)
 	case PanicLevel:
@@ -26,6 +28,10 @@ func Output(level uint8, code string, err error) {
 	case PanicLevel:
 		Panic(code).Err(err)
 	}
+}
+
+func Debug(code string) *Event {
+	return newEvent(code, DebugLevel)
 }
 
 func Info(code string) *Event {
