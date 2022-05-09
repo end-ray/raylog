@@ -61,10 +61,6 @@ func newEvent(code string, level Level) *Event {
 	return &event
 }
 
-//func (e *Event) Msg(msg string) *Event {
-//	return nil
-//}
-
 func (e *Event) Err(err error) {
 	e.msg = err.Error()
 

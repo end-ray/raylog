@@ -6,6 +6,8 @@ func CheckMsg(level uint8, code string, message string) {
 		Debug(code).Msg(message)
 	case InfoLevel:
 		Info(code).Msg(message)
+	case WarnLevel:
+		Warn(code).Msg(message)
 	}
 }
 
