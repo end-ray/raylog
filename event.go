@@ -7,7 +7,8 @@ import (
 )
 
 type Configuration struct {
-	Home string
+	Home  string
+	Level Level
 }
 
 var config Configuration
@@ -69,7 +70,9 @@ func (e *Event) Err(err error) {
 
 	log := fmt.Sprintf("%s %s %s: %s\n", e.level.String(), e.t.Format("02-01-2006 15:04:05\n"), e.code, e.msg)
 
-	writeLog(log)
+	if config.Level >= e.level {
+		writeLog(log)
+	}
 
 	if e.level == PanicLevel {
 		panic(log)
@@ -86,7 +89,9 @@ func (e *Event) Msg(message string) {
 
 	log := fmt.Sprintf("%s %s %s: %s\n", e.level.String(), e.t.Format("02-01-2006 15:04:05\n"), e.code, e.msg)
 
-	writeLog(log)
+	if config.Level >= e.level {
+		writeLog(log)
+	}
 
 	if e.level == PanicLevel {
 		panic(log)
@@ -95,8 +100,12 @@ func (e *Event) Msg(message string) {
 
 }
 
-func GetConfig(path string) {
+func SetConfig(path string) {
 	config.Home = path //назначаем переменной значение
+}
+
+func SetLevel(level Level) {
+	config.Level = level
 }
 
 func writeLog(message string) {

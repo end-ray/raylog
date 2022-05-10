@@ -22,18 +22,6 @@ func CheckErr(level uint8, code string, err error) {
 	}
 }
 
-func Output(level uint8, code string, err error) {
-
-	switch Level(level) {
-	case InfoLevel:
-		Info(code).Err(err)
-	case WarnLevel:
-		Warn(code).Err(err)
-	case PanicLevel:
-		Panic(code).Err(err)
-	}
-}
-
 func Debug(code string) *Event {
 	return newEvent(code, DebugLevel)
 }
