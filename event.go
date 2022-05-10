@@ -104,8 +104,9 @@ func SetConfig(path string) {
 	config.Home = path //назначаем переменной значение
 }
 
-func SetLevel(level Level) {
-	config.Level = level
+func SetLevel(level uint8) {
+
+	config.Level = Level(level)
 }
 
 func writeLog(message string) {
