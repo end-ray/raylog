@@ -23,13 +23,13 @@ type Event struct {
 }
 
 const (
-	TraceLevel Level = iota // 0   iota: auto increment
-	DebugLevel              // 1
-	InfoLevel               // 2
+	PanicLevel Level = iota // 0   iota: auto increment
+	FatalLevel              // 1
+	ErrorLevel              // 2
 	WarnLevel               // 3
-	ErrorLevel              // 4
-	FatalLevel              // 5
-	PanicLevel              // 6
+	InfoLevel               // 4
+	DebugLevel              // 5
+	TraceLevel              // 6
 )
 
 func (l Level) String() string {
@@ -70,7 +70,7 @@ func (e *Event) Err(err error) {
 
 	log := fmt.Sprintf("%s %s %s: %s\n", e.level.String(), e.t.Format("02-01-2006 15:04:05\n"), e.code, e.msg)
 
-	if config.Level >= e.level {
+	if config.Level <= e.level {
 		writeLog(log)
 	}
 
